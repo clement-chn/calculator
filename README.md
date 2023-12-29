@@ -1,8 +1,9 @@
-# React + Vite
+Cette application web de calculatrice est inspirée par la simplicité de celle d'Apple disponible nativement sur iPhone. La seule différence est que j'ai opté pour un design plus rectangulaire.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**INSTALLATION**
 
-Currently, two official plugins are available:
+Pour installer cette application il suffit d'installer les dépendances NPM via la commande "npm install".
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**LANCER L'APPLICATION**
+
+Pour lancer l'application il suffit de lancer la commande "npm run dev" et de cliquer sur le lien fournit par vite.
