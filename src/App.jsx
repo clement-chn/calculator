@@ -4,9 +4,9 @@ function App() {
 
   return (
     <>
-    <main className="p-12">
+    <main>
       <div>
-        <Button name="0" width="40"/>
+        <Button name="0" width="full"/>
       </div>
       <div>
         <Button name="AC"/>
@@ -33,7 +33,7 @@ function App() {
         <Button name="+" bgcolor="orange" textcolor="white"/>
       </div>
       <div>
-        <Button name="0" width="40"/>
+        <Button name="0" width="1/2"/>
         <Button name=","/>
         <Button name="=" bgcolor="orange" textcolor="white"/>
       </div>
