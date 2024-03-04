@@ -8,38 +8,48 @@ function App() {
 
   const handleButtonPress = (event) => {
 
-    console.log(event.key);
-
     const authorizedKey = ["1","2","3","4","5","6","7","8","9","*","/","%","-","+","=",".","Backspace", "Enter"]
+
+    let percentage = false
+    let equal = false
+    let remove = false
 
     if (authorizedKey.includes(event.key))
     {
-
-      // ici on check et transforme
+      // ici on check, transforme et aussi prépare les variables
       switch(event.key) {
         case '*':
           newElement = 'x'
+          break
         case '.':
           newElement = ','
-        default:
-          newElement = event.key
-      }
-
-      // let calculation = event.target.value
-      let calculation = "9x"
-
-      switch(newElement) {
-        case 'x' && calculation.endsWith('x'):
-          console.log('il ya un x a la fin');
+          break
+        case '%':
+          percentage = true
+          newElement = false
+          break
+        case '=' || 'Enter':
+          equal = true
+          newElement = false
+          break
+        case 'Backspace':
+          remove = true
+          newElement = false
           break
         default:
-          calculation = calculation + newElement
+          newElement = event.key
+          break
+      }
+      console.log("la touche après transfo est " + newElement);
+
+      // on ajoute l'élément (switch case)
+      if (calculation.endsWith('x')) {
+        console.log('Il y a un x à la fin.');
       }
 
-      console.log("la touche est autorisée");
+      let calculation = event.target.value
+      setNumber(calculation + newElement)
 
-    } else {
-      console.log("la touche n'est pas autorisée");
     }
   }
 
