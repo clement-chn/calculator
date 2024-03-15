@@ -8,72 +8,92 @@ function App() {
 
   const handleButtonPress = (event) => {
 
-    const authorizedKey = ["1","2","3","4","5","6","7","8","9","*","/","%","-","+","=",".","Backspace", "Enter"]
-
-    let percentage = false
-    let equal = false
-    let remove = false
+    const operators = ["*", "/", "-", "+", ".", "(", ")"]
+    const digits = ["0","1","2","3","4","5","6","7","8","9"]
+    const authorizedKey = [...operators,...digits,"=","%","Backspace", "Enter"]
+    let calculation = event.target.value 
+    const endsWithOperator = (
+      calculation.endsWith("x ") ||
+      calculation.endsWith("- ") ||
+      calculation.endsWith("÷ ") ||
+      calculation.endsWith(". ") ||
+      calculation.endsWith("(") ||
+      calculation.endsWith(")")
+    )
 
     if (authorizedKey.includes(event.key))
     {
-      // ici on check, transforme et aussi prépare les variables
+      console.log("la touche est autorisée")
+      // je veux faire tous dans ce switch. 
       switch(event.key) {
         case '*':
-          newElement = 'x'
+          newElement = ' x '
+          if (!endsWithOperator) {
+            setNumber(calculation + newElement)
+          } 
           break
+        case '-':
+          newElement = ' - '
+          if (!endsWithOperator) {
+            setNumber(calculation + newElement)
+          } 
+          break
+        case '/':
+          newElement = ' ÷ '
+          if (!endsWithOperator) {
+            setNumber(calculation + newElement)
+          }
+          break 
+        case '+':
+          console.log("wassup");
+          newElement = ' + '
+          if (!endsWithOperator) {
+            setNumber(calculation + newElement)
+          }
+          break 
         case '.':
           newElement = ','
+          if (!endsWithOperator) {
+            setNumber(calculation + newElement)
+          } 
           break
+        case '(':
+          newElement = '('
+          if (!endsWithOperator) {
+            setNumber(calculation + newElement)
+          } 
+          break  
+        case ')':
+          newElement = ')'
+          if (!endsWithOperator) {
+            setNumber(calculation + newElement)
+          } 
+          break  
         case '%':
-          percentage = true
-          newElement = false
+          newElement = event.key
+          if (endsWithOperator) {
+            setNumber(calculation.str.substr(-3) + newElement)
+          }
+          setNumber(calculation + newElement)
           break
         case '=' || 'Enter':
-          equal = true
-          newElement = false
           break
         case 'Backspace':
-          remove = true
-          newElement = false
           break
         default:
           newElement = event.key
+          console.log(calculation)
+          if (calculation == 0) {
+            setNumber(newElement)
+            console.log("c'était un 0")
+          } else {
+            setNumber(calculation + newElement)
+            console.log("c'était pas un 0")
+          }
           break
       }
-      console.log("la touche après transfo est " + newElement);
-
-      // on ajoute l'élément (switch case)
-      if (calculation.endsWith('x')) {
-        console.log('Il y a un x à la fin.');
-      }
-
-      let calculation = event.target.value
-      setNumber(calculation + newElement)
-
     }
   }
-
-  // const handleInputChange = (event) => {
-  //   const numberInput = (event.target.value).slice(-1)
-  //   console.log(numberInput);
-  //   let calculation = event.target.value
-  //   console.log('la value de linput est ' + numberInput)
-  //   console.log('le calcul de base avant input est ' + number)
-
-  //   if (numberInput == 0 && number == 0) {
-  //       console.log('oui c\'est bien égal à 0 et le clavier appuie sur 0')
-  //       setNumber(0)
-  //       calculation = 0
-  //   } else if (numberInput !== 0 && number == 0) {
-  //     console.log("le clavier appuie sur un autre chiffre que 0 et avant il y avait un 0");
-  //       setNumber(numberInput)
-  //   } else {
-  //     console.log("le clavier appuie sur un autre chiffre que 0 et avant il y avait un autre chiffre que zero");
-  //     setNumber(number + numberInput)
-  //   }
-
-  //   console.log('le calcul actuel est ' + calculation)
-  // };
 
 
   return (
